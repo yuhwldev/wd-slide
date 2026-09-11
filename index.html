@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lễ Dạm Ngõ - Lê Huy & Bùi Thủy</title>
+
+  <!-- Font đẹp, có fallback nếu máy không có internet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500&family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --red-1:#7f0018;
+      --red-2:#a40824;
+      --red-3:#c21938;
+      --cream:#fff6eb;
+      --gold:#f4d9aa;
+      --gold-soft:#ecd0a0;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      width:100%;
+      height:100%;
+      margin:0;
+      overflow:hidden;
+      background:#220006;
+    }
+
+    body{
+      font-family:"Be Vietnam Pro", Arial, sans-serif;
+    }
+
+    .stage{
+      position:relative;
+      width:100vw;
+      height:100vh;
+      min-height:520px;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      isolation:isolate;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(255,122,122,.12), transparent 34%),
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.055), transparent 26%),
+        linear-gradient(135deg,var(--red-1),var(--red-2) 48%,#6f0016 100%);
+    }
+
+    /* texture lụa nhẹ */
+    .stage::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-3;
+      opacity:.30;
+      background:
+        repeating-linear-gradient(
+          7deg,
+          rgba(255,255,255,.025) 0 1px,
+          rgba(0,0,0,.025) 1px 3px,
+          transparent 3px 6px
+        );
+      mix-blend-mode:soft-light;
+    }
+
+    .stage::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-2;
+      box-shadow:inset 0 0 130px rgba(30,0,5,.68);
+      pointer-events:none;
+    }
+
+    .frame{
+      position:absolute;
+      inset:2.4vh 2vw;
+      border:1px solid rgba(244,217,170,.42);
+      border-radius:8px;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.035),
+        0 0 36px rgba(0,0,0,.18);
+      pointer-events:none;
+    }
+
+    .content{
+      position:relative;
+      z-index:3;
+      width:min(92vw,1200px);
+      text-align:center;
+      color:var(--cream);
+      padding:40px 24px;
+    }
+
+    .double-happiness{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      z-index:-1;
+      font-family:"Noto Serif CJK SC","Songti SC","SimSun",serif;
+      font-size:clamp(230px,33vw,520px);
+      font-weight:700;
+      line-height:1;
+      color:rgba(255,160,160,.105);
+      text-shadow:0 0 20px rgba(255,205,205,.035);
+      user-select:none;
+      animation:watermarkBreath 7s ease-in-out infinite;
+    }
+
+    .subtitle{
+      margin:0 0 2.8vh;
+      font-family:"Playfair Display","Times New Roman",serif;
+      font-size:clamp(26px,3vw,48px);
+      font-weight:500;
+      letter-spacing:.03em;
+      color:#fff3e7;
+      text-shadow:0 2px 12px rgba(0,0,0,.25);
+      animation:softFloat 5.8s ease-in-out infinite;
+    }
+
+    .names{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:clamp(24px,4vw,70px);
+      margin:0;
+      min-height:34vh;
+    }
+
+    .name{
+      font-family:"Great Vibes","Segoe Script","Snell Roundhand",cursive;
+      font-size:clamp(70px,10vw,168px);
+      font-weight:400;
+      line-height:.95;
+      color:#fff9f1;
+      white-space:nowrap;
+      text-shadow:
+        0 2px 0 rgba(255,255,255,.08),
+        0 5px 14px rgba(0,0,0,.30),
+        0 0 28px rgba(255,219,199,.10);
+      animation:breathScale 5.4s ease-in-out infinite;
+      transform-origin:center;
+    }
+
+    .name.second{
+      animation-delay:-2.7s;
+    }
+
+    .amp{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(42px,5vw,76px);
+      color:var(--gold);
+      opacity:.94;
+      text-shadow:0 2px 12px rgba(0,0,0,.25);
+      animation:ampGlow 4.7s ease-in-out infinite;
+    }
+
+    .bottom{
+      margin-top:1.2vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+
+    .date{
+      font-family:"Playfair Display","Times New Roman",serif;
+      font-size:clamp(19px,2.1vw,31px);
+      font-weight:500;
+      letter-spacing:.045em;
+      color:var(--gold-soft);
+      text-shadow:0 2px 12px rgba(0,0,0,.28);
+    }
+
+    .wish{
+      font-family:"Be Vietnam Pro",sans-serif;
+      font-weight:300;
+      font-size:clamp(13px,1.4vw,18px);
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:rgba(255,239,223,.72);
+    }
+
+    .petals{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      pointer-events:none;
+      overflow:hidden;
+    }
+
+    .petal{
+      position:absolute;
+      top:-10vh;
+      width:var(--s);
+      height:calc(var(--s) * .72);
+      border-radius:80% 20% 70% 30% / 70% 35% 65% 30%;
+      background:
+        radial-gradient(circle at 35% 30%, #ffe7e1 0 14%, #f6b5b3 35%, #d97079 72%, #b84d5f 100%);
+      opacity:var(--o);
+      filter:drop-shadow(0 2px 3px rgba(50,0,5,.16));
+      animation:
+        fall var(--d) linear infinite,
+        sway var(--sw) ease-in-out infinite alternate;
+      animation-delay:var(--delay);
+      transform:rotate(var(--r));
+    }
+
+    @keyframes fall{
+      0%{
+        translate:0 -12vh;
+        rotate:0deg;
+      }
+      100%{
+        translate:var(--drift) 118vh;
+        rotate:420deg;
+      }
+    }
+
+    @keyframes sway{
+      from{ margin-left:-18px; }
+      to{ margin-left:18px; }
+    }
+
+    @keyframes breathScale{
+      0%,100%{ transform:scale(1); }
+      50%{ transform:scale(1.035); }
+    }
+
+    @keyframes watermarkBreath{
+      0%,100%{ opacity:.75; transform:translate(-50%,-50%) scale(1); }
+      50%{ opacity:1; transform:translate(-50%,-50%) scale(1.025); }
+    }
+
+    @keyframes softFloat{
+      0%,100%{ transform:translateY(0); }
+      50%{ transform:translateY(-6px); }
+    }
+
+    @keyframes ampGlow{
+      0%,100%{ opacity:.72; transform:scale(1); }
+      50%{ opacity:1; transform:scale(1.06); }
+    }
+
+    /* hạt sáng cực nhẹ */
+    .sparkles{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle at 15% 28%, rgba(255,238,215,.35) 0 1px, transparent 2px),
+        radial-gradient(circle at 82% 36%, rgba(255,238,215,.24) 0 1px, transparent 2px),
+        radial-gradient(circle at 72% 74%, rgba(255,238,215,.20) 0 1px, transparent 2px),
+        radial-gradient(circle at 31% 68%, rgba(255,238,215,.22) 0 1px, transparent 2px);
+      animation:sparklePulse 4.8s ease-in-out infinite;
+    }
+
+    @keyframes sparklePulse{
+      0%,100%{opacity:.45}
+      50%{opacity:.85}
+    }
+
+    @media (max-width:760px){
+      .names{
+        flex-direction:column;
+        gap:4px;
+        min-height:auto;
+        margin:6vh 0 3vh;
+      }
+      .amp{ margin:-8px 0; }
+      .name{ font-size:clamp(60px,18vw,112px); }
+      .double-happiness{ font-size:clamp(250px,70vw,430px); }
+      .wish{ letter-spacing:.08em; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *,*::before,*::after{
+        animation-duration:.001ms !important;
+        animation-iteration-count:1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <div class="frame"></div>
+    <div class="sparkles"></div>
+    <div class="petals" id="petals"></div>
+
+    <section class="content">
+      <div class="double-happiness">囍</div>
+
+      <h1 class="subtitle">Lễ Dạm Ngõ</h1>
+
+      <div class="names">
+        <div class="name">Lê Huy</div>
+        <div class="amp">&amp;</div>
+        <div class="name second">Bùi Thủy</div>
+      </div>
+
+      <div class="bottom">
+        <!-- Đổi ngày tại đây nếu muốn -->
+        <div class="date">Ngày lành • Duyên đẹp</div>
+        <div class="wish">Trăm năm hạnh phúc • Bách niên giai lão</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Cánh hoa rơi nhẹ
+    const wrap = document.getElementById("petals");
+    const PETAL_COUNT = 22;
+
+    for (let i = 0; i < PETAL_COUNT; i++) {
+      const p = document.createElement("span");
+      p.className = "petal";
+
+      const size = 10 + Math.random() * 14;
+      const duration = 10 + Math.random() * 10;
+      const sway = 2.5 + Math.random() * 3;
+      const left = Math.random() * 100;
+      const opacity = .28 + Math.random() * .48;
+      const delay = -(Math.random() * duration);
+      const drift = (-80 + Math.random() * 160) + "px";
+      const rotate = Math.floor(Math.random() * 180) + "deg";
+
+      p.style.left = left + "vw";
+      p.style.setProperty("--s", size + "px");
+      p.style.setProperty("--d", duration + "s");
+      p.style.setProperty("--sw", sway + "s");
+      p.style.setProperty("--o", opacity);
+      p.style.setProperty("--delay", delay + "s");
+      p.style.setProperty("--drift", drift);
+      p.style.setProperty("--r", rotate);
+
+      wrap.appendChild(p);
+    }
+  </script>
+</body>
+</html>
