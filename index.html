@@ -43,9 +43,9 @@
       overflow:hidden;
       isolation:isolate;
       background:
-        radial-gradient(circle at 50% 38%, rgba(255,122,122,.12), transparent 34%),
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.055), transparent 26%),
-        linear-gradient(135deg,var(--red-1),var(--red-2) 48%,#6f0016 100%);
+              radial-gradient(circle at 50% 38%, rgba(255, 122, 122, .12), transparent 34%),
+              radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .055), transparent 26%),
+              linear-gradient(135deg, #540409, #540409 48%, #540409 100%)
     }
 
     /* texture lụa nhẹ */
@@ -104,7 +104,7 @@
       font-size:clamp(230px,33vw,520px);
       font-weight:700;
       line-height:1;
-      color:rgba(255,160,160,.105);
+      color:#e23c3c8c;
       text-shadow:0 0 20px rgba(255,205,205,.035);
       user-select:none;
       animation:watermarkBreath 7s ease-in-out infinite;
@@ -113,10 +113,11 @@
     .subtitle{
       margin:0 0 2.8vh;
       font-family:"Playfair Display","Times New Roman",serif;
-      font-size:clamp(26px,3vw,48px);
+      /*font-family:"Great Vibes","Segoe Script","Snell Roundhand",cursive;*/
+      font-size:clamp(100px,5vw,100px);
       font-weight:500;
       letter-spacing:.03em;
-      color:#fff3e7;
+      color:#ffcb97;
       text-shadow:0 2px 12px rgba(0,0,0,.25);
       animation:softFloat 5.8s ease-in-out infinite;
     }
@@ -132,7 +133,7 @@
 
     .name{
       font-family:"Great Vibes","Segoe Script","Snell Roundhand",cursive;
-      font-size:clamp(70px,10vw,168px);
+      font-size:clamp(70px,10vw,136px);
       font-weight:400;
       line-height:.95;
       color:#fff9f1;
@@ -159,7 +160,7 @@
     }
 
     .bottom{
-      margin-top:1.2vh;
+      margin-top:20vh;
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -168,7 +169,7 @@
 
     .date{
       font-family:"Playfair Display","Times New Roman",serif;
-      font-size:clamp(19px,2.1vw,31px);
+      font-size:clamp(19px,2.1vw,40px);
       font-weight:500;
       letter-spacing:.045em;
       color:var(--gold-soft);
@@ -178,10 +179,10 @@
     .wish{
       font-family:"Be Vietnam Pro",sans-serif;
       font-weight:300;
-      font-size:clamp(13px,1.4vw,18px);
+      font-size:clamp(13px,1.4vw,33px);
       letter-spacing:.16em;
       text-transform:uppercase;
-      color:rgba(255,239,223,.72);
+      color:rgb(255 239 223);
     }
 
     .petals{
@@ -227,12 +228,12 @@
 
     @keyframes breathScale{
       0%,100%{ transform:scale(1); }
-      50%{ transform:scale(1.035); }
+      50%{ transform:scale(1.06); }
     }
 
     @keyframes watermarkBreath{
       0%,100%{ opacity:.75; transform:translate(-50%,-50%) scale(1); }
-      50%{ opacity:1; transform:translate(-50%,-50%) scale(1.025); }
+      50%{ opacity:1; transform:translate(-50%,-50%) scale(1.06); }
     }
 
     @keyframes softFloat{
@@ -255,6 +256,9 @@
         radial-gradient(circle at 15% 28%, rgba(255,238,215,.35) 0 1px, transparent 2px),
         radial-gradient(circle at 82% 36%, rgba(255,238,215,.24) 0 1px, transparent 2px),
         radial-gradient(circle at 72% 74%, rgba(255,238,215,.20) 0 1px, transparent 2px),
+        radial-gradient(circle at 31% 68%, rgba(255,238,215,.22) 0 1px, transparent 2px);
+        radial-gradient(circle at 31% 68%, rgba(255,238,215,.22) 0 1px, transparent 2px);
+        radial-gradient(circle at 31% 68%, rgba(255,238,215,.22) 0 1px, transparent 2px);
         radial-gradient(circle at 31% 68%, rgba(255,238,215,.22) 0 1px, transparent 2px);
       animation:sparklePulse 4.8s ease-in-out infinite;
     }
